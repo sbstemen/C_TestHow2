@@ -1,0 +1,73 @@
+/*************************/
+/***  CSS selections  ***/
+/***********************/
+
+Selecting when a modal is involved 
+/*CODE*/
+var findPoint = webDriver.FindElements(
+	By.CssSelector("div[style=\"display: block;\"].modal button.cc-image-uploader-save-btn"));
+
+
+
+	
+*using CssSelector Find a DIV named 'col-md-2.col-md-offset-7'
+* the . represents a space between them 
+*  To make a compound selector using the space ' ' indicates some where in the children of the previous selector
+*   To make a compound selector using the arrow '>' indicates the immediate child element. 
+** div.foo  == means look for a div named 'foo'  
+**  button.foozy == means look for a button named 'foozy'
+var singleElement = webDrVr.FindElement(By.CssSelector("div.col-md-2.col-md-offset-7 button.cc-image-uploader-save-btn"));
+
+NOW we are generating an array of elements by telling it to find.. 
+* Look for anything that's a 'Button'  and has the name cc-image-uploader-save-btn"  
+** BUT these may be hidden behind other modal windows.  
+*** This actually returns 4 elements items when it looks like there would be only 2
+***** BECAUSE ~ there are some hidden behind the active modal window.  
+var anElmentArray = webDrVr.FindElements(By.CssSelector("button.cc-image-uploader-save-btn"));
+
+
+NOW NOW how to interact with only the active modal. 
+* We are going to create an array of elements that are only visible. 
+** We need to tell SE that it needs to find things within the div that has the style display because there are multiple modal windows that are not visable. 
+*** Pattern to remember == By.CssSelector("div[style=\"display: block;\"].modal but...
+***** This tells to look for a div who has the escaped character example style display: block
+var anElmentArray = webDrVr.FindElements(By.CssSelector("div[style=\"display: block;\"].modal button.cc-image-uploader-save-btn"));
+
+
+
+BUT THIS WORKED??
+By.CssSelector("div.col-md-2.col-md-offset-7 button.cc-image-uploader-save-btn")
+
+To find something that is listed by list items then other css classes.  
+
+webDriver.FindElement(By.CssSelector("li.cc-user-widget")).Click();  <== will click the element 
+
+Such as what shows on Web Pages. 
+*NOTE NOTE** FireFox and Chrome display role in different order. 
+
+YOU WANT TO SELECT THE WIDGET BECAUSE IT'S THE USER UPDATE ICON
+
+<li id="dropdown-notifications" class="dropdown dropdown-notifications " role="presentation">...</li>
+<li class="cc-user-widget" role="presentation">
+	<a action="push" href="/profile">
+      <span> ... react text user name ... </span>
+	  <img class="cc-default-avatar img-circle" src="foo" style=width: 30px;">
+	</a>
+</li>
+
+
+/*****************************************/
+/**  CSS selections NEXT item groups ****/
+/***************************************/
+
+You have a group of elements and you need to select them. 
+Buttons are a good example, you want the first of two or 10. 
+
+var buttons = webDriver.FindElements(By.CssSelector("div.cc-course-module li.list-group-item > button")); 
+
+THAT WILL GIVE YOU AN ARRAY OF ELEMENTS AND NAME THEM BUTTONS. NEXT CLICK THE FIRST ONE. 
+
+buttons[0].Click(); 
+
+
+

@@ -1,0 +1,243 @@
+BUGS
+Bugs ~ How to tell a developer 'It really is a bug'; and when to know the developer really was right?
+
+* By Design ~ Good vs BAD
+
+* Perfect never launches.
+
+* What is your yardstick?  We all have one.
+
+* Favorite Bugs, do you have one?  ~ OR would you trust a QA guy who doesn't?
+
+* Credit with first one ~ 1946 USN Retired Commander Grace Hopper
+
+/*********************************************************/
+
+1's && 0's 
+
+Do 1's and 0's matter in today's world of high level languages and JIT compiliations?
+
+Simple add box
+[ # ] + [ # ] = Value
+
+0 in both 
+1 in both
+9 in both
+...
+A in both
+Z in Both 
+Why would I put in a period '.' ?
+Would an Ampersand '&' be better than a ( or )?
+So we tested these ! & + - ) * (
+
+any others?  
+
+What about the Colon sign : 
+and 
+The slash that leans to the right /
+
+Why are those important 
+
+ASCII 
+is the zero value character hex, DECIMAL, Binary and Octal 0?
+
+NO
+
+CHR : DEC : HEX : OCT : BINARY  
+ 0     48    30    060  0011 0000
+ 1     49    31    061  0011 0001
+ Down to
+ 9     57    39    071  0011 1001
+
+ So what comes before the zero 0 
+
+
+CHR : DEC : HEX  : OCT : BINARY  
+ /     47    29    057  0010 1111
+ 0     48    30    060  0011 0000
+ 1     49    31    061  0011 0001
+ Down to
+ 9     57    39    071  0011 1001
+ :     58    3A    072  0011 1010
+
+
+ Now you can see why the slash / and Colon : are worth testing in even a simple thing.  
+
+Is ASCII the only way to encode?  
+
+HTML 
+
+EBCDIC
+Extended Binary Coded Decimal Interchange Coded
+Same chart in EBCDIC
+CHR : DEC : HEX :  OCT : BINARY  
+      239    EF    357  ‭1110 1111‬‬
+ 0    240    F0    360  1111 0000
+ 1    241    F1    361  1111 0001
+ Down to
+ 9    249    F9    371  1111 1001
+ |    250    FA    372  1111 1010
+
+In the above example there are two interesting history lessons here. 
+1 ~ Old IBM coders didn't use comma delimited fields they used the Pipett ' | ' vertical bar. 
+2 ~ there is no lower boundary that needs to be tested.  
+
+ /******************************/
+
+
+  Email Aliases
+
+ Ever break one down into it's parts.  
+
+* Remote 
+vs
+* Local
+
+ Domain first everything to the right of the '@' symbol.  
+ Who controls that?  DP  
+ No ICANN  International Committee for Assigning Network Names. 
+
+ Basically it can be Letters, Numbers, the Dash '-' and a period.  
+ So let's ignore the remote part of a email alias.  
+
+ The other part is called the local part. 
+
+* Q1 ~ Is Scott@Domain.Com 
+different than 
+* sCoTT@dOMAin.cOM ??
+
+* Normalized (Reference) Stack Overlord
+
+From RFC 5321, section-2.3.11: Bottom of page 15
+
+The standard mailbox naming convention is defined to be "local-part@domain"; contemporary usage permits a much broader set of applications than simple "user names". Consequently, and due to a long history of problems when intermediate hosts have attempted to optimize transport by modifying them, the local-part MUST be interpreted and assigned semantics only by the host specified in the domain part of the address.
+
+So yes, the part before the "@" could be case-sensitive, since it is entirely under the control of the host system. In practice though, no widely used mail systems distinguish different addresses based on case.
+
+The part after the @ sign however is the domain and according to RFC 1035, section 3.1,
+"Name servers and resolvers must compare [domains] in a case-insensitive manner"
+
+In short, you are safe to treat email addresses as case-insensitive.
+
+Our Focus is Local  Left of the '@' sign
+
+
+ * "Legal Chars" 
+Easy and quick read probably 95% or better correct 
+
+* Wikipedia https://en.wikipedia.org/wiki/Email_address 
+
+Letters A ~ Z
+digits 0 to 9;
+special characters !#$%&'*+-/=?^_`{|}~;
+
+Good but a long read ~ O'Reilly Send Mail.
+
+Then there is the bible
+* SMTP RFC's 
+~ RFC-561 was proposed or ratified in = 1973
+~ RFC-733 was proposed or ratified in == 1977
+~ RFC-821 and 822 was proposed or ratified in  ==  1982
+~ RFC-2821 and 2822 was proposed or ratified in ==  2001
+~ RFC-5321 and 5322  Was proposed or ratified in ==  2008 
+BASE URL https://www.ietf.org/rfc/rfc<NUMBER>.txt
+
+
+What's legally OK to use?
+
+A~B a~b 0~9
+
+(Side Bug is the ASCII boundary layers.) 
+
+What about the period '.'
+
+What about the pound or hash tag '#'?
+
+What does the RFC say?  'read read read read read read....'
+
+MEAT of the issue:
+
+Let us examine what an SMTP email alias is first. 
+
+* Local Part  == YourNameYouGiveOut 
+* Separator   ==  ' @ '  The AT sign 
+* Remote Part ==  AnyDomainThatIsLegal.???
+
+Start with Domains. 
+* What were the original top 6 TLD domains.  
+*.COM 
+*.GOV 
+*.MIL
+*.EDU
+*.ORG 
+*.NET 
+
+* then everything went to hell in a hand basket and we now have domains like *.CLUB, or .ROCKS, and even .GURU.  
+For this reason everything from the @ sign to the end is going to be assumed to be perfect.  Domain names will be another L&L. 
+
+What about the Local part, that part of your eamil alias that goes before the At sign, '@'?
+
+We all try to have unique can catchy sounding names like FuzzyBunny@Domain.Com  
+
+Is 'FuzzyBunny' legal?  YES
+
+What about Fuzzy.Bunny?  or Fuzzy-Bunny or Fuzzy+Bunny???  
+
+I am asking what are the valid and legal letters in anybody's email alias?  
+
+Let's start with a couple of assumptions, any alpha Chars from the letter A to Z and numbers 0 to 9 are good.  
+
+Next what about NON-alpha Chars?  
+
+We know that the period is legal, and the '@' At Sign isn't that's a Separator.  
+
+What about the others?  
+~ Funny side note, as I was typing this up in the Visual Code tool, I wasn't looking at the screen I was just hammering out these charcerers.  My screen whet crazy.  
+They are 
+/****************/
+
+`~!@#$%^&*()_+=-|}{[][\":;'?><,./
+
+Or what about € or even  ª  or ¥
+
+/****************/
+
+I sound liek im off on a wild tangent, so let's pull this back to bugs. 
+
+If your email alias was Fuzzy.Bunny@HotMail.Com would that work would the email get to you?
+JProbably 
+
+What about Fluffy+Bunny would the plus sign work?  ~ maybe 
+
+Let's be really specific
+
+From the Exeter site you enter the name Fluffy+bunny@Hotmail.Com 
+It accepts that and you think you are done with the registration part.  
+Knowing that you require a second email you patiently wait for it, but none shows up?  
+
+What's wrong? 
+We are going to break this down to the answer, and identify when it's a bug, and when it's NOT a bug. 
+Like I said last time we have to break things down into the smallest parts.  
+* you entered the wrong email alias? 
+* The system did provide you an error that the email was unaccptable but you ignored it. 
+* The system (Exeter LMS == System) Cannot accept the email alias with a '+' but doesn't warn the user. 
+* The system CAN and Does handle an email with a plus '+' but when it goes to our local email server (OES) that's where it fails. 
+* Our OES handles it but during the store && Forward part of transnition one of the mystery servres fails (MES)
+* The Users email server (EUES) will allow him to create such an account but it doesn't accept inbound connections (YES Really)
+* The whole shooting match works, EXCEPT the end users reader  (Thunderbird or Outlook) didn't work (Not Likely)
+
+Is each of these cases a bug?  Short answer ~ YES
+In each of these cases is Exeter responsible ~ NO
+
+
+Scott.B.Stemen@Domain.com 
+Scott+B+Stemen
+Scott#B#Stemen ==> what happens 
+
+Valid email addresses
+<tt>niceandsimple@example.com</tt>
+<tt>a.little.unusual@example.com</tt>
+<tt>a.little.more.unusual@dept.example.com</tt>
+<tt>much."more\ unusual"@example.com</tt>
+<tt>very.unusual."@".unusual.com@example.com</tt>
+<tt>very."(),:;<>[]".VERY."very@\\\ \"very".unusual@strange.example.com</tt>

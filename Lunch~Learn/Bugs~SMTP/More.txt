@@ -1,0 +1,90 @@
+BUGS
+
+Credit with first one
+
+What is your yardstick?  We all have one.
+
+Favorite?  
+
+Do 1's and 0's matter in today's world of high level languages and JIT compiliations?
+
+Simple add box
+[ # ] + [ # ] = Value
+
+0 in both 
+1 in both
+9 in both
+...
+A in both
+Z in Both 
+Why would I put in a period '.' ?
+Would an Ampersand '&' be better than a ( or )?
+So we tested these ! & + - ) * (
+
+any others?  
+
+What about the Colon sign : 
+and 
+The slash that leans to the right /
+
+Why are those important 
+
+ASCII 
+is the zero value character hex, DECIMAL, Binary and Octal 0?
+
+NO
+
+CHR : DEC : HEX : OCT : BINARY  
+ 0     48    30    060  0011 0000
+ 1     49    31    061  0011 0001
+ Down to
+ 9     57    39    071  0011 1001
+
+ So what comes before the zero 0 
+
+
+CHR : DEC : HEX  : OCT : BINARY  
+ /     47    29    057  0010 1111
+ 0     48    30    060  0011 0000
+ 1     49    31    061  0011 0001
+ Down to
+ 9     57    39    071  0011 1001
+ :     58    3A    072  0011 1010
+
+
+ Now you can see why the slash / and Colon : are worth testing in even a simple thing.  
+
+Is ASCII the only way to encode?  
+
+HTML 
+
+EBCDIC
+Extended Binary Coded Decimal Interchange Coded
+Same chart in EBCDIC
+CHR : DEC : HEX :  OCT : BINARY  
+      239    EF    357  ‭1110 1111‬‬
+ 0    240    F0    360  1111 0000
+ 1    241    F1    361  1111 0001
+ Down to
+ 9    249    F9    371  1111 1001
+ |    250    FA    372  1111 1010
+
+In the above example there are two interesting history lessons here. 
+1 ~ Old IBM coders didn't use comma delimited fields they used the Pipett ' | ' vertical bar. 
+2 ~ there is no lower boundary that needs to be tested.  
+
+ /******************************/
+ Email Aliases
+
+ Ever break one down into it's parts.  
+
+ Domain first everything to the right of the '@' symbol.  
+ Who controls that?  DP  
+ No ICANN  International Committee for Assigning Network Names. 
+
+ Basically it can be Letters, Numbers, the Dash '-' and a period.  
+ So let's ignore the remote part of a email alias.  
+
+ The other part is called the local part.  
+
+ 

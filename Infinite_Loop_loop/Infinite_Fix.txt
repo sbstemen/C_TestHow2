@@ -1,0 +1,11 @@
+ISSUE
+Student has written a bit of javascript code that runs as soon as the LMS it opened to the proejct.  It forces a popup and it's an infinite looping popup.  Student can't stop it because opening the LMS is defacto opening a browser that runs the javascript code. 
+
+FIX 
+(1) Dump Cookies from browser
+(2) Log into the LMS. 
+(3) Before re-starting the offending course / lesson
+(4) Open the FireFox dev tools console
+(5) Add this ==>  window.alert = function() {};
+(6) This should bind the offending alert to an inert function. 
+(7) Allowing you to remove the offending code
