@@ -1,0 +1,203 @@
+Add Section Stuff 
+/************************/
+
+// *************************************************************
+// Coder Camps
+// 8444 N. 90th Street St. 110
+// Scottsdale, AZ
+// -- SBS ~ 20180314
+// Copyright (c) 2016-18
+// Project:      CC.Student.Basic
+// *************************************************************
+
+namespace CC.LMS.Student.Tests01
+{
+    using System;
+    using System.Drawing;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Windows.Forms;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
+    using OpenQA.Selenium.Interactions;
+    using Utility;
+
+    /// <summary>
+    /// Adding Section to Student
+    /// </summary>
+    [TestClass]
+    public class Test_01_AddSection
+    {
+        private static string chromePath = Directory.GetCurrentDirectory() + "\\assets\\";
+        private static string testName = Properties.Settings.Default.TestName;
+        private static string logPath = Properties.Settings.Default.LogPath + testName + DateTime.Now.ToString("-MM-dd-HHmm");
+        private UserData usrData = new UserData();
+        private Test_01_AddSectionProcess sections = new Test_01_AddSectionProcess();
+        private Utilities utils = new Utilities(logPath);
+
+        [TestInitialize]
+        public void TestUserSetup()
+        {
+            this.utils.UDataFiller(this.usrData);
+            this.usrData.ClientUrl = Properties.Settings.Default.WZURL;
+            this.usrData.Password = Properties.Settings.Default.password;
+            this.usrData.LogInAlias = Properties.Settings.Default.WZStudent;
+        }
+
+        [TestMethod]
+        public void T01_AddSection()
+        {
+            int passCount = 0;
+            int failCount = 0;
+
+            using (IWebDriver webDriver = new ChromeDriver(chromePath))
+            {
+                this.sections.SignIn(webDriver, this.utils, this.usrData, ref passCount, ref failCount);
+
+                this.utils.RandomPause(2);
+
+                this.sections.SignOff(webDriver, this.utils, this.usrData, ref passCount, ref failCount);
+
+                this.utils.RandomPause(2);
+
+                webDriver.Close();
+            }
+        }
+    }
+}
+
+/* SBS 20180409 Part of Sprint 37 you have T-5 days. */
+
+
+
+
+
+
+
+
+/***********************************/
+// *************************************************************
+// Coder Camps
+// 8444 N. 90th Street St. 110
+// Scottsdale, AZ
+// -- SBS ~ 20180314
+// Copyright (c) 2016-18
+// Project:      CC.Student.Basic
+// *************************************************************
+
+namespace CC.LMS.Student.Tests01
+{
+    using System;
+    using System.Drawing;
+    using System.IO;
+    using AutoIt;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium;
+    using Utility;
+
+    internal class Test_01_AddSectionProcess
+    {
+        /// <summary>
+        /// Signs in an account.
+        /// </summary>
+        /// <param name="webDriver">The web driver.</param>
+        /// <param name="utils">The utils.</param>
+        /// <param name="usrData">The usr data.</param>
+        /// <param name="passCount">The pass count.</param>
+        /// <param name="failCount">The fail count.</param>
+        /// <returns>IWebDriver</returns>
+        public IWebDriver SignIn(IWebDriver webDriver, Utilities utils, UserData usrData, ref int passCount, ref int failCount)
+        {
+            Size browserSize = new Size(1536, 932);
+            string pageText = string.Empty;
+            string searchText = string.Empty;
+            string startPage = @"https://www.google.com/";
+            webDriver.Navigate().GoToUrl(startPage);
+            webDriver.Manage().Window.Size = browserSize;
+            utils.RandomPause(1);
+            webDriver.Navigate().GoToUrl(usrData.ClientUrl);
+            utils.RandomPause(2);
+            webDriver.FindElement(By.Id("Username")).SendKeys(usrData.LogInAlias);
+            webDriver.FindElement(By.Id("Password")).SendKeys(usrData.Password);
+            utils.RandomPause(2);
+            webDriver.FindElement(By.ClassName("cc-btn-sign-in")).Click();
+            utils.RandomPause(5); // Update to wait for code needs to be 5 minimum.
+            pageText = webDriver.PageSource.ToString();
+
+            searchText = "My Dashboard";
+
+            try
+            {
+                Assert.IsTrue(pageText.Contains(searchText));
+                {
+                    utils.MakeLogEntry("Student shows a dashboard");
+                    utils.RandomPause(2);
+                    passCount = ++passCount;
+                    searchText = string.Empty;
+                }
+            }
+            catch (Exception expText)
+            {
+                searchText = "Graded Assignments";
+                if (pageText.Contains(searchText))
+                {
+                    utils.MakeLogEntry("FAILED FAILED Either last user wasn't logged out, or wrong client details.");
+                }
+                else
+                {
+                    utils.MakeLogEntry("FAILED FAILED Tried to authenticate as a student something went really wrong");
+                }
+
+                utils.MakeLogEntry("Log On Failed for client " + usrData.LogInAlias);
+                utils.MakeLogEntry("Exception Code" + expText);
+                failCount = failCount++;
+                Assert.Fail();
+            }
+
+            utils.RandomPause(1);
+
+            return webDriver;
+        }
+
+        /// <summary>
+        /// Signs off the account.
+        /// </summary>
+        /// <param name="webDriver">The web driver.</param>
+        /// <param name="utils">The utils.</param>
+        /// <param name="usrData">The usr data.</param>
+        /// <param name="passCount">The pass count.</param>
+        /// <param name="failCount">The fail count.</param>
+        /// <returns>IWebDriver</returns>
+        public IWebDriver SignOff(IWebDriver webDriver, Utilities utils, UserData usrData, ref int passCount, ref int failCount)
+        {
+            try
+            {
+                {
+                    var closeButton = webDriver.FindElement(By.CssSelector("div.modal-content button.close"));
+                    closeButton.Click();
+                }
+            }
+            catch (Exception exText)
+            {
+                utils.MakeLogEntry(exText.ToString());
+            }
+
+            var dashboardButton = webDriver.FindElements(By.CssSelector("div.navbar-collapse.collapse ul.nav.navbar-nav.navbar-right > li"));
+
+            dashboardButton[0].Click();
+
+            IJavaScriptExecutor jsexe = (IJavaScriptExecutor)webDriver;
+
+            jsexe.ExecuteScript(
+                "window.scrollTo(0, Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight));");
+
+            utils.RandomPause();
+
+            webDriver.FindElement(By.ClassName("qa-logout-button")).Click();
+            return webDriver;
+        }
+
+    }
+}
+
