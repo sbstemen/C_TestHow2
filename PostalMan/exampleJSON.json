@@ -1,0 +1,13 @@
+// converted to json
+
+{
+"CourseCode" : "ZQATest06",
+"courseId" : 1112,
+"courseName" : "Quick And Dirty 106",
+"courseVersionId" : 438,
+"endDateUTC" : 1529020800000,
+"isOpen" : 	true,
+"maxStudents" : 0,
+"startDateUTC" : 1527811200000,
+"timeZoneId" : "US Mountain Standard Time"
+}

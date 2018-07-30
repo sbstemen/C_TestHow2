@@ -9,3 +9,8 @@ FIX
 (5) Add this ==>  window.alert = function() {};
 (6) This should bind the offending alert to an inert function. 
 (7) Allowing you to remove the offending code
+
+
+
+* window.alert = function() {};
+* window.alert = () => {};

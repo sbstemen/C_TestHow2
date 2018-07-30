@@ -1,0 +1,12 @@
+If FF Dev tools 
+* In Prod we don't log them to the console. 
+* Config / hope FF Dev tools Network to show all. 
+* Refresh or follow 
+* will be a 'messaging?access_token=string...
+
+
+If CH Prod you can see what's not logged to the console. 
+* Open CH dev tools. 
+* Refresh 
+* look for 'messaging' as the filter. 
+* you may see a lot of type 6 messages these are heart beats. 

@@ -1,0 +1,124 @@
+65.52.213.73:443
+
+
+
+https://cc-dev-lms-webuiapi.azurewebsites.net/reports/sections/progress
+
+
+20180711 ~ Earlier??
+defe29a07c18c1c47ab073f80c9fd8ee4844d6918527ccb83302e1957621ec10
+
+20170711 ~ 1445 ??
+0e8379330fd186d4fe33c0b0fca78ce3231c6e17c82f19d0a664e9826c704b58
+
+20180711 ~ 1442 Call ???
+Information: WebSocket connected to wss://cc-dev-lms-webuiapi.azurewebsites.net/messaging?access_token=0e8379330fd186d4fe33c0b0fca78ce3231c6e17c82f19d0a664e9826c704b58&id=gFLDpYycAL_K7WK_9Ku1xg
+
+
+https://cc-dev-lms-webuiapi.azurewebsites.net/users/500
+
+
+Bearer d5e8accd94cf9c9b635b2fdec13a6ca7eb733d8b2bb02f1020a1c573994b2520
+
+
+++++++++++++++
+First 
+https://cc-dev-lms-webuiapi.azurewebsites.net/users?includeUserOrganizationIds=true&skip=0&take=9&lastName=diety 
+
+
+
+++++++++++++
+
+It makes a sequence of calls to gather all this information
+(01) https://cc-dev-lms-webuiapi.azurewebsites.net/users?includeUserOrganizationIds=true&skip=0&take=9&lastName=diety 
+
+next I open the user Diety... 
+(02) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/organizationIds
+~ reeturned Og Id's 
+
+(03) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500 
+~ ReSponds With BOBBS of data. 
+~ Postal Man DV Usr Two
+
+(04) https://cc-dev-lms-webuiapi.azurewebsites.net/platform/client 
+~ Next is a buss message  kind of ignore. 
+
+
+(05) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/cohorts  ??
+~ NO fooKin EyeDee
+
+(06) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/enrollments/grades/final
+~ I think this gives us the 'Student Section' data on the User Details Card. 
+~ IMPORTANT
+
+(07) https://cc-dev-lms-webuiapi.azurewebsites.net/user/dashboard/instructor
+~ I think this returns the "Instructor Stuff" 
+
+(08) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/enrollments?active=false
+~~ Data about the student's enrollments.  
+
+(09) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/instructors?active=false
+~~ Instructor Data 
+
+(10) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/organizationIds
+~ Bearer ~~ 69b95f8ee4bcdacabd8391d979fec6788709255c5edf0fa69a7204cd7f2c7989
+
+(11) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500
+~ Bearer ~~ 69b95f8ee4bcdacabd8391d979fec6788709255c5edf0fa69a7204cd7f2c7989
+      https://cc-dev-lms-webuiapi.azurewebsites.net/users/500
+*THIS* is where we get the GUID 
+it's buried in the response  
+So, ~ Bearer token and user returns GUID  ~ c8f88376-a765-4595-af53-630373a72937
+
+(12) https://cc-dev-lms-webuiapi.azurewebsites.net/platform/client
+~ Bearer ~~ 
+
+(13) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/cohorts
+~ Bearer ~~ 
+
+(14)  https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/enrollments/grades/final
+~ Bearer ~~ 
+
+(15) https://cc-dev-lms-webuiapi.azurewebsites.net/user/dashboard/instructor 
+B
+
+(16) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/enrollments?active=false
+
+(17) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/instructors?active=false
+
+(18) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/attendance?startDateUTC=1514764800000&endDateUTC=1531436785291
+
+(19) https://cc-dev-lms-webuiapi.azurewebsites.net/users/500/attendance?startDateUTC=1514764800000&endDateUTC=1531436785291
+
+
+(20) https://cc-dev-lms-webuiapi.azurewebsites.net/platform/users/c8f88376-a765-4595-af53-630373a72937
+~ NO Bearer Token but uses the users specific GUID  
+
+(21) https://cc-dev-lms-webuiapi.azurewebsites.net/platform/users/c8f88376-a765-4595-af53-630373a72937
+BEARER AND GUID in quiery string 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

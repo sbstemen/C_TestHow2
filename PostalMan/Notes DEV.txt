@@ -1,0 +1,30 @@
+IN DEV My bearer token for account ScottOne is as follows 
+
+Bearer 88a38b0918e65045ec54a464fdd93dc24cb05cafb87fd1f6d42400ccab8ce295
+
+to create a section 
+here is the details convert to JSON 
+
+courseCode	ZQATest06
+courseId	1112
+courseName	Quick And Dirty 106
+courseVersionId	438
+endDateUTC	1529020800000
+isOpen	true
+maxStudents	0
+startDateUTC	1527811200000
+timeZoneId	US Mountain Standard Time
+
+
+Converted to JSON
+{
+"CourseCode", "ZQATest06"
+"courseId", 1112
+"courseName", "Quick And Dirty 106"
+"courseVersionId", 438
+"endDateUTC", 1529020800000
+"isOpen", 	true
+"maxStudents", 0
+"startDateUTC", 1527811200000
+"timeZoneId", "US Mountain Standard Time"
+}

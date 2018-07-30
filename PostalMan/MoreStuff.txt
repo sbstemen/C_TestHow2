@@ -1,0 +1,17 @@
+
+  https://cc-dev-lms-webuiapi.azurewebsites.net/users/377/history?daysOfHistory=10
+
+Token for ScottOne
+ Bearer 8c4427de298993d9941388c3ec8c465a83429b6162a97329c611ec0016fe47bd
+
+To devlope a new GET from postman 
+
+(1) Protocol must be called out it's https://  ==  {{protocol}} 
+
+(2) Target API Must be called out  ROOT cc-dev-lms-webuiapi.azurewebsites.net  ==  {{WebUiApi}}
+
+(3) Authorization  must be type Bearer {{ Token Name for account using }}
+
+
+
+https://cc-dev-lms-webuiapi.azurewebsites.net/reports/sections/progress
